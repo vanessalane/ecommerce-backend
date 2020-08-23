@@ -30,7 +30,7 @@ ProductTag.belongsTo(Product, {
 });
 
 // Tags belongToMany Products (through ProductTag)
-Tag.hasMany(Product, {
+Tag.belongsTo(Product, {
   foreignKey: 'tag_id'
 });
 
