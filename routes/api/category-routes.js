@@ -4,7 +4,7 @@ const { Category, Product } = require('../../models');
 // The `/api/categories` endpoint
 router.get('/', (req, res) => {
   Category.findAll({
-    order: [['category_name', 'ASC']],
+    order: ['id'],
     include: [
       {
         model: Product,
@@ -55,7 +55,7 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
   Category.update(
-    {category_name: req.body.category_name},
+    req.body,
     {where: {id: req.params.id}}
   )
   .then(dbCategoryData => {
