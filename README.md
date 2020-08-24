@@ -48,5 +48,11 @@ Uses Node and Express to build the back end (db schema and REST API) of an e-com
 - Update a tag: `PUT /api/tags/:id`
 - Delete a tag: `DELETE /api/tags/:id`
 
+## Packages
+- express
+- mysql2
+- sequelize
+- dotenv
+
 ## Questions
 If you have questions, email me at [vlane0593@gmail.com](mailto:vlane0593@gmail.com) or reach out on [GitHub](https://www.github.com/vanessalane).
