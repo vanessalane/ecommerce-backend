@@ -7,6 +7,7 @@ const { JSON } = require('sequelize');
 
 router.get('/', (req, res) => {
   Tag.findAll({
+    order: ['id'],
     include: [{
       model: Product,
       attributes: [
@@ -61,8 +62,10 @@ router.post('/', (req, res) => {
   */
   Tag.create(req.body)
   .then((tag) => {
+    console.log(`Created the tag "${req.body.tag_name}"!`);
     // if there are product ids in the body, need to update ProductTag
     if (req.body.productIds) {
+      console.log(`productIds specified. Updating ProductTag...`);
       const productTagIdArr = req.body.productIds.map((product_id) => {
         return {
           product_id,
@@ -89,6 +92,7 @@ router.put('/:id', (req, res) => {
     },
   })
   .then((tag) => {
+    console.log(`Updated the tag with ID "${req.params.id}"!`);
     // find all associated tags from ProductTag
     return ProductTag.findAll({ where: { tag_id: req.params.id } });
   })
@@ -98,6 +102,7 @@ router.put('/:id', (req, res) => {
 
     // define the productTagsToRemove and newProductTags if there were tags provided
     if (req.body.productIds) {
+      console.log(`productIds specified. Updating ProductTag...`);
       // get list of current tag_ids
       const productTagIds = productTags.map(({ product_id }) => product_id);
       // create filtered list of new tag_ids
